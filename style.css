@@ -31,7 +31,7 @@ body::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: url('/essiboi.jpg') no-repeat center/cover;
+    background: url('essiboi.jpg') no-repeat center/cover;
     filter: hue-rotate(var(--hue)) saturate(200%) contrast(150%) brightness(120%);
     animation: trippy 5s linear infinite;
     z-index: -2;
@@ -40,7 +40,7 @@ body::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: url('/essiboi-nobg.png') no-repeat center/cover;
+    background: url('essiboi-nobg.png') no-repeat center/cover;
     filter: hue-rotate(var(--hue)) saturate(200%) contrast(150%) brightness(120%);
     animation: trippy 5s linear infinite;
     z-index: -1;
