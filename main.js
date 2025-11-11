@@ -75,7 +75,7 @@ const startBin = Math.floor(bassStart * fftSize / sampleRate);
 const endBin = Math.floor(bassEnd * fftSize / sampleRate);
 
 const img = new Image();        // create an image object
-img.src = '/speaker.png';  // set the source
+img.src = 'speaker.png';  // set the source
 img.crossOrigin = "anonymous";  // needed if from another domain
 
 
