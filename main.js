@@ -1,11 +1,11 @@
 const body = document.body;
-
+const playBtn = document.getElementById('playBtn')
 let hue = 0;
 
 setInterval(() => {
   hue = (hue + 2) % 360;
   body.style.setProperty('--hue', `${hue}deg`);
-}, 30);
+}, 100);
 
 
 
@@ -78,8 +78,10 @@ const img = new Image();        // create an image object
 img.src = 'speaker.png';  // set the source
 img.crossOrigin = "anonymous";  // needed if from another domain
 
-
-
+console.log(audio)
+const playBtnOffsetTop = playBtn.offsetTop
+const playBtnWidth = playBtn.offsetWidth
+const playBtnHeight = playBtn.offsetHeight
 // SoundBars
 function animateSoundBar() {
   if (audio.paused || audio.ended || audio.currentTime == 0) return;
@@ -92,13 +94,25 @@ function animateSoundBar() {
     sum += dataArray[i];
     count++;
   }
-  const average = sum / count; // 0–255
- 
-
+  const bassIntensity = sum / count; // 0–255
+  
+  // play button animation
+  let buttonPosY = Math.floor(playBtnOffsetTop * (bassIntensity) / 100)
+  let buttonWidth = Math.floor(playBtnWidth * (bassIntensity) / 100)
+  let buttonHeight = Math.floor(playBtnHeight * (bassIntensity) / 100)
+  if(buttonPosY > playBtnOffsetTop) {
+    if (buttonPosY > 200) {
+      buttonPosY = 200 - Math.random() * 10
+    }
+    playBtn.style.top = `${ buttonPosY}px`
+    playBtn.style.width = `${buttonWidth}px`
+    playBtn.style.height = `${buttonHeight}px`
+  }
+  
   const barWidth = (canvas.width / bufferLength);
   let barHeight;
   let x = 0;
-
+ 
   for (let i = 0; i < bufferLength; i++) {
     barHeight = dataArray[i] * 0.5 ;
     const hsl = `hsl(${hue}, 50%, 50%)`;
@@ -109,6 +123,7 @@ function animateSoundBar() {
     // ctx.fillRect(x, 100, barWidth, barHeight);
     // ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
     const y = ((canvas.height - barHeight) / 2) - (canvas.height / 2.30);
+    console.log(y)
     ctx.fillRect(x, y, barWidth, barHeight);
     x += barWidth + 1;
   }
@@ -133,9 +148,18 @@ animate()
 
 document.addEventListener('DOMContentLoaded', () => {
   const playAudio = (event) => {
-    if (audio.paused || audio.ended)
-      audio.play();
+    const audio1 = document.getElementById("audio")
+    audio1.volume = 0.1; 
+    try {
+        audio1.play();
+    }
+    catch (e) {
+      alert("1")
+    }
   };
 
-  document.addEventListener('click', playAudio);
+  playBtn.addEventListener('click', () => {
+    const audio1 = document.getElementById("audio")
+    audio1.play().catch(err => console.error(err));
+  });
 });

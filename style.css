@@ -9,6 +9,7 @@
   --c6: #e81d4e;
   --c7: #fc2a50;
   --ctext: #fff;
+   --hue: 180deg;
 }
 
 
@@ -24,7 +25,7 @@ body {
   background-repeat: no-repeat;
   font-family: "Roboto Flex", sans-serif;
   font-size: .75rem;
-  --hue: 180deg; 
+  
 }
 
 body::before {
@@ -178,3 +179,22 @@ footer .socmed a {
   cursor: pointer;
 }
 
+.playBtn {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 5;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: hsl(var(--hue),50%,50%,.5);
+  border: 2px solid hsl(var(--hue),50%,50%);
+}
+/* .playBtn::before {
+  content: "";
+  position: absolute;
+  inset: 35px 35px 35px 40px;
+  clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  background: hsl(var(--hue),50%,50%);
+} */
