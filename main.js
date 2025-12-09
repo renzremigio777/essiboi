@@ -146,21 +146,10 @@ function animate(time = 0) {
 animate()
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const playAudio = (event) => {
-    const audio1 = document.getElementById("audio")
-    audio1.volume = 0.1; 
-    try {
-        audio1.play();
-    }
-    catch (e) {
-      alert("1")
-    }
-  };
-
   playBtn.addEventListener('click', () => {
     const audio1 = document.getElementById("audio")
     audio1.play().catch(err => console.error(err));
     playBtn.innerText="PAYR NA YAN!"
+
+    playBtn.disabled = true;
   });
-});
