@@ -161,5 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
   playBtn.addEventListener('click', () => {
     const audio1 = document.getElementById("audio")
     audio1.play().catch(err => console.error(err));
+    playBtn.innerText="PAYR NA YAN!"
   });
 });
